@@ -26,6 +26,7 @@ template <typename Type, int Ord>
 struct BTree
 {
 private:
+
     void split(InternalNode<Type, Ord> *parent, int child_index)
     {
         Node<Type, Ord> *node = parent->child[child_index];
@@ -79,6 +80,7 @@ private:
     }
 
 public:
+
     Node<Type, Ord> *root;
 
     BTree()
@@ -211,25 +213,36 @@ public:
     void Display(Node<Type, Ord> *node, int depth)
     {
         if (!node)
+        {
             return;
+        }
+
         cout << string(depth * 4, ' ');
+
         for (int i = 0; i < node->num_keys; i++)
+        {
             cout << node->key[i] << ' ';
+        }
+
         cout << '\n';
+
         if (!node->is_leaf)
         {
             InternalNode<Type, Ord> *in = static_cast<InternalNode<Type, Ord> *>(node);
             for (int i = 0; i <= node->num_keys; i++)
+            {
                 Display(in->child[i], depth + 1);
+            }
         }
     }
+
 };
 
 int main()
 {
     BTree<int, 3> btree;
     btree.Insert(2);
-    btree.Insert(5);
+    btree.Insert(1);
     btree.Insert(3);
     btree.Insert(7);
     btree.Insert(0);
