@@ -336,9 +336,9 @@ public:
             }
 
             // DUPLICATES
-            if (i < current->num_keys && current->key[i] == value)
+            if (i < current->num_keys)
             {
-                return;
+                if(current->key[i] == value) return;
             }
 
             // SPLIT
@@ -364,9 +364,9 @@ public:
             i++;
         }
 
-        if (i < current->num_keys && current->key[i] == value)
+        if (i < current->num_keys)
         {
-            return;
+            if(current->key[i] == value) return;
         }
 
         // SHIFT elements one step
